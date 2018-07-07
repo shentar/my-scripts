@@ -1,0 +1,1 @@
+ffmpeg -r 3 -i img_%d.jpg -t 73 -vcodec libx264 D:/test.mp4
