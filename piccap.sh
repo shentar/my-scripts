@@ -46,7 +46,7 @@ do
     then
         # 上午5点半～9点，晚上5点至8点，每隔3分钟拍摄一张。
         [ ${sleepcount} -eq 0 ] && capPic
-        [ ${sleepcount} -eq ${busyinterval} ] && capPic && sleepcount=0
+        [ ${sleepcount} -ge ${busyinterval} ] && capPic && sleepcount=0
     elif [ ${hour} -ge 0 -a ${hour} -le 4 ]
     then
         # 凌晨0点到4点不抓取照片。
@@ -54,7 +54,7 @@ do
     else
         # 其他时间段每隔30分钟抓取一张。
         [ ${sleepcount} -eq 0 ] && capPic
-        [ ${sleepcount} -eq ${normalinterval} ] && capPic && sleepcount=0
+        [ ${sleepcount} -ge ${normalinterval} ] && capPic && sleepcount=0
     fi
     
     sleepcount=$(expr ${sleepcount} + 1)
